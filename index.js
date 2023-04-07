@@ -1,9 +1,8 @@
 const fs = require('fs');
 const inquirer =require('inquirer');
-const {circle,triangle,square} = require('./lib/shapes')
+const {Circle,Triangle,Square} = require('./lib/shapes.js')
 
 
-// need a write me file that will hod the image that is held
 
 inquirer
 .prompt([
@@ -11,7 +10,7 @@ inquirer
         type:'list',
         name:'shape',
         message:'what shape are you feeling?',
-        Choices:['circle','triangle','square']
+        Choices:['Circle','Triangle','Square']
     },
     {
         type:'input',
@@ -41,14 +40,14 @@ inquirer
 ])
 .then((response)=>{
     let shape;
-    if (response === 'circle'){
-        shape = new circle();
+    if (response === 'Circle'){
+        shape = new Circle();
     }
-    else if (response === 'triangle'){
-        shape = new triangle();
+    else if (response === 'Triangle'){
+        shape = new Triangle();
     }
-    else if (response === 'square'){
-        shape = new square();
+    else if (response === 'Square'){
+        shape = new Square();
     }
     shape.setColor(response.colo);
 
