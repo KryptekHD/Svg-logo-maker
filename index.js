@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer =require('inquirer');
+const SVG = require('./lib/svg.js')
 const {Circle,Triangle,Square} = require('./lib/shapes.js')
 
 
@@ -10,7 +11,7 @@ inquirer
         type:'list',
         name:'shape',
         message:'what shape are you feeling?',
-        Choices:['Circle','Triangle','Square']
+        choices:['Circle','Triangle','Square']
     },
     {
         type:'input',
@@ -49,7 +50,7 @@ inquirer
     else if (response === 'Square'){
         shape = new Square();
     }
-    shape.setColor(response.colo);
+    shape.setColor(response.color);
 
     const svg = new SVG();
     svg.setShape(shape);
@@ -57,7 +58,7 @@ inquirer
     
     svg.setText(response.text, response.textColor);
 
-    const newSvg = svg.render();
+    const newSvg = SVG.render();
     
     
     fs.writeFile('myNew.svg',newSvg , (err) =>{
